@@ -4,7 +4,29 @@ import CartManagerMongo from '../dao/CartManagerMongo.js';
 const router = Router();
 const cartManager = new CartManagerMongo();
 
-// 1. DELETE producto
+// Crear un carrito
+router.post('/', async (req, res) => {
+  try {
+    const newCart = await cartManager.createCart();
+    res.status(201).json({ status: "success", cart: newCart });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+// Carrito por ID
+router.get('/:cid', async (req, res) => {
+  try {
+    const cart = await cartManager.getCartById(req.params.cid);
+    if (!cart) return res.status(404).json({ error: "Carrito no encontrado" });
+    res.json({ status: "success", cart });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 1. DELETE carrito y producto
 router.delete('/:cid/products/:pid', async (req, res) => {
   try {
     await cartManager.deleteProductFromCart(req.params.cid, req.params.pid);
@@ -14,7 +36,17 @@ router.delete('/:cid/products/:pid', async (req, res) => {
   }
 });
 
-// 2. PUT carrito completo
+// POST carrito y producto
+router.post('/:cid/product/:pid', async (req, res) => {
+  try {
+    const result = await cartManager.addProductToCart(req.params.cid, req.params.pid);
+    res.json({ status: 'success', cart: result });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PUT carrito completo
 router.put('/:cid', async (req, res) => {
   try {
     await cartManager.updateCart(req.params.cid, req.body.products);
@@ -24,7 +56,7 @@ router.put('/:cid', async (req, res) => {
   }
 });
 
-// 3. PUT cantidad de un producto
+// PUT cantidad de un producto
 router.put('/:cid/products/:pid', async (req, res) => {
   try {
     await cartManager.updateProductQuantity(req.params.cid, req.params.pid, req.body.quantity);
@@ -34,21 +66,11 @@ router.put('/:cid/products/:pid', async (req, res) => {
   }
 });
 
-// 4. DELETE carrito completo
+// DELETE
 router.delete('/:cid', async (req, res) => {
   try {
     await cartManager.clearCart(req.params.cid);
     res.json({ message: "Carrito vaciado" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// 5. GET carrito con populate
-router.get('/:cid', async (req, res) => {
-  try {
-    const cart = await cartManager.getCartWithDetails(req.params.cid);
-    res.json(cart);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

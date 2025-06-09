@@ -38,4 +38,29 @@ export default class CartManagerMongo {
 
     throw new Error("Producto no encontrado en el carrito");
   }
+  
+  // CART METHODS
+  async createCart() {
+    return await CartModel.create({ products: [] });
+  }
+
+  async getCartById(cartId) {
+    return await CartModel.findById(cartId).populate('products.product');
+  }
+
+  async addProductToCart(cartId, productId) {
+    const cart = await CartModel.findById(cartId);
+    if (!cart) return null;
+
+    const existingProduct = cart.products.find(p => p.product.toString() === productId);
+
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.products.push({ product: productId, quantity: 1 });
+    }
+
+    await cart.save();
+    return cart;
+  }
 }
