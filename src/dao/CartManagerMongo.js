@@ -5,15 +5,22 @@ export default class CartManagerMongo {
   }
 
   async deleteProductFromCart(cartId, productId) {
-    const cart = await CartModel.findById(cartId);
-    if (!cart) throw new Error("Carrito no encontrado");
+  const cart = await CartModel.findById(cartId);
+  if (!cart) throw new Error("Carrito no encontrado");
 
-    cart.products = cart.products.filter(
-      (p) => p.product.toString() !== productId
-    );
+  const cleanProductId = productId.trim();
+  const initialLength = cart.products.length;
 
-    return await cart.save();
-  }
+  cart.products = cart.products.filter(
+    (p) => p.product.toString() !== cleanProductId
+  );
+
+  if (cart.products.length === initialLength)
+    throw new Error("Producto no encontrado en el carrito");
+
+  return await cart.save();
+}
+
 
   async updateCart(cartId, newProducts) {
     const cart = await CartModel.findById(cartId);
@@ -62,5 +69,13 @@ export default class CartManagerMongo {
 
     await cart.save();
     return cart;
+  }
+
+  async clearCart(cartId) {
+  const cart = await CartModel.findById(cartId);
+  if (!cart) throw new Error("Carrito no encontrado");
+
+  cart.products = [];
+  return await cart.save();
   }
 }

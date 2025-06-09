@@ -66,7 +66,7 @@ router.put('/:cid/products/:pid', async (req, res) => {
   }
 });
 
-// DELETE
+// DELETE carrito entero
 router.delete('/:cid', async (req, res) => {
   try {
     await cartManager.clearCart(req.params.cid);
