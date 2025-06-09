@@ -18,18 +18,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
+app.engine('hbs', engine({ extname: '.hbs' }));
+app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
 import productRouter from './routes/products.router.js';
 import cartRouter from './routes/carts.router.js';
-// import viewsRouter from './routes/views.router.js';
+import viewsRouter from './routes/views.router.js';
 
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
-// app.use('/', viewsRouter);
+app.use('/', viewsRouter);
 
 const PORT = process.env.PORT || 8080;
 

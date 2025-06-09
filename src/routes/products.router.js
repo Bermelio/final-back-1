@@ -5,14 +5,28 @@ const router = Router();
 const productManager = new ProductManagerMongo();
 
 // GET
+// router.get('/', async (req, res) => {
+//   const { limit, page, sort, query } = req.query;
+//   try {
+//     const result = await productManager.getProductsPaginated({ limit, page, sort, query });
+//     res.json(result);
+//   } catch (error) {
+//     res.status(500).json({ status: 'error', message: 'Error al obtener productos' });
+//   }
+// });
 router.get('/', async (req, res) => {
-  const { limit, page, sort, query } = req.query;
-  try {
-    const result = await productManager.getProductsPaginated({ limit, page, sort, query });
-    res.json(result);
-  } catch (error) {
-    res.status(500).json({ status: 'error', message: 'Error al obtener productos' });
-  }
+  const { page = 1 } = req.query;
+  const options = { page, limit: 9, lean: true };
+  const result = await ProductModel.paginate({}, options);
+
+  res.render('index', {
+    products: result.docs,
+    hasPrevPage: result.hasPrevPage,
+    hasNextPage: result.hasNextPage,
+    prevLink: result.hasPrevPage ? `/?page=${result.prevPage}` : null,
+    nextLink: result.hasNextPage ? `/?page=${result.nextPage}` : null,
+    page: result.page
+  });
 });
 
 // GET ID
