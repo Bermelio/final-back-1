@@ -10,7 +10,7 @@ router.get('/products', async (req, res) => {
   try {
     const result = await productManager.getProductsPaginated({ limit, page, sort, query });
 
-    res.render('index', {
+    res.render('products', {
       products: result.payload,
       hasPrevPage: result.hasPrevPage,
       hasNextPage: result.hasNextPage,
@@ -19,7 +19,8 @@ router.get('/products', async (req, res) => {
       page: result.page,
     });
   } catch (error) {
-    res.status(500).send('Error al cargar los productos');
+  console.error('Error en /products:', error.message);
+  res.status(500).send(`Error en el servidor: ${error.message}`);
   }
 });
 

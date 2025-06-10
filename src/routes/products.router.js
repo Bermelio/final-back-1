@@ -1,32 +1,44 @@
 import { Router } from 'express';
 import ProductManagerMongo from '../dao/ProductManagerMongo.js';
+import { ProductModel } from '../models/product.model.js';
 
 const router = Router();
 const productManager = new ProductManagerMongo();
 
 // GET
-// router.get('/', async (req, res) => {
-//   const { limit, page, sort, query } = req.query;
-//   try {
-//     const result = await productManager.getProductsPaginated({ limit, page, sort, query });
-//     res.json(result);
-//   } catch (error) {
-//     res.status(500).json({ status: 'error', message: 'Error al obtener productos' });
-//   }
-// });
 router.get('/', async (req, res) => {
-  const { page = 1 } = req.query;
-  const options = { page, limit: 9, lean: true };
-  const result = await ProductModel.paginate({}, options);
+  const { limit, page, sort, query } = req.query;
+  try {
+    const result = await productManager.getProductsPaginated({ limit, page, sort, query });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: 'Error al obtener productos' });
+  }
+});
+//GET RENDER HBS
+router.get('/products', async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 10;
 
-  res.render('index', {
-    products: result.docs,
-    hasPrevPage: result.hasPrevPage,
-    hasNextPage: result.hasNextPage,
-    prevLink: result.hasPrevPage ? `/?page=${result.prevPage}` : null,
-    nextLink: result.hasNextPage ? `/?page=${result.nextPage}` : null,
-    page: result.page
-  });
+    const result = await ProductModel.paginate({}, {
+      page,
+      limit,
+      lean: true
+    });
+
+    res.render('products', {
+      products: result.docs,
+      page: result.page,
+      hasPrevPage: result.hasPrevPage,
+      hasNextPage: result.hasNextPage,
+      prevLink: result.hasPrevPage ? `/products?page=${result.prevPage}` : null,
+      nextLink: result.hasNextPage ? `/products?page=${result.nextPage}` : null
+    });
+  } catch (error) {
+    console.error('Error al cargar productos paginados:', error.message);
+    res.status(500).send('Error al cargar productos');
+  }
 });
 
 // GET ID

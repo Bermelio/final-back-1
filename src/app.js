@@ -1,9 +1,11 @@
+import path from 'path';
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import { engine } from 'express-handlebars';
-import dotenv from 'dotenv';
-import path from 'path';
+import handlebars from 'handlebars';
 import { fileURLToPath } from 'url';
+import exphbs from 'express-handlebars';
+import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -18,8 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handlebars
-app.engine('hbs', engine({ extname: '.hbs' }));
-app.set('view engine', 'hbs');
+app.engine('handlebars', exphbs.engine({
+  handlebars: allowInsecurePrototypeAccess(handlebars)
+}));
+app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 // Rutas

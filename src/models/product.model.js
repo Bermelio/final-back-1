@@ -5,9 +5,9 @@ const productSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
-  status: Boolean,
+  stock: Number,
   category: String,
-  stock: Number
+  status: Boolean
 });
 
 productSchema.plugin(mongoosePaginate);

@@ -30,10 +30,10 @@ class ProductManagerMongo {
       hasPrevPage: result.hasPrevPage,
       hasNextPage: result.hasNextPage,
       prevLink: result.hasPrevPage
-        ? `/api/products?limit=${limit}&page=${result.prevPage}`
+        ? `/products?limit=${limit}&page=${result.prevPage}`
         : null,
       nextLink: result.hasNextPage
-        ? `/api/products?limit=${limit}&page=${result.nextPage}`
+        ? `/products?limit=${limit}&page=${result.nextPage}`
         : null,
     };
   }
