@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carritos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="container mx-auto px-4 py-8">
+
+    <h1 class="text-3xl font-bold mb-6 text-center">🛒 Carritos</h1>
+
+    <div class="flex justify-end mb-2">
+      <a class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden" href="/products">
+        <span class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full"></span>
+        <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
+          🏪 Volver a productos
+        </span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{#each carts}}
+        <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-semibold mb-2">🧺 Carrito ID:</h2>
+            <p class="text-sm text-gray-500 mb-4">{{this._id}}</p>
+
+            {{#if this.products.length}}
+              <ul class="space-y-2">
+                {{#each this.products}}
+                  <li class="text-gray-700">
+                    <span class="font-medium">{{this.product.title}}</span> — Cantidad: {{this.quantity}}
+                  </li>
+                {{/each}}
+              </ul>
+            {{else}}
+              <p class="text-gray-500 italic">Este carrito está vacío.</p>
+            {{/if}}
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+  </div>
+
+</body>
+</html>
