@@ -27,6 +27,9 @@
         <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
           <div>
             <h2 class="text-xl font-semibold mb-2">{{this.title}}</h2>
+            <div class="w-full h-64 relative overflow-hidden">
+              <img src="{{this.thumbnail}}" alt="{{this.title}}" class="w-full h-48 object-scale-down rounded-lg mb-4">
+            </div>
             <p class="text-gray-600 mb-1">Categoría: {{this.category}}</p>
             <p class="text-gray-800 font-bold mb-2">$ {{this.price}}</p>
             <p class="text-sm text-gray-500">Stock: {{this.stock}}</p>
