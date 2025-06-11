@@ -14,6 +14,16 @@ router.post('/', async (req, res) => {
   }
 });
 
+// GET general
+router.get('/', async (req, res) => {
+  try {
+    const carts = await cartManager.getAllCarts();
+    res.json({ status: "success", carts });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 // Carrito por ID
 router.get('/:cid', async (req, res) => {

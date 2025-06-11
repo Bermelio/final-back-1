@@ -15,11 +15,12 @@ router.get('/', async (req, res) => {
     res.status(500).json({ status: 'error', message: 'Error al obtener productos' });
   }
 });
+
 //GET RENDER HBS
 router.get('/products', async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = 10;
+    const limit = 9;
 
     const result = await ProductModel.paginate({}, {
       page,

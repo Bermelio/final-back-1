@@ -1,7 +1,7 @@
 import { ProductModel } from "../models/product.model.js";
 
 class ProductManagerMongo {
-  async getProductsPaginated({ limit = 10, page = 1, sort, query }) {
+  async getProductsPaginated({ limit = 9, page = 1, sort, query }) {
     const filter = {};
 
     if (query) {
