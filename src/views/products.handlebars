@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Productos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+{{!-- Using PostCSS // USAR TAILDWIND COMO POSTCSS ARREGLARLO DESPUES --}}
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">Productos</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {{#each products}}
+        <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-semibold mb-2">{{this.title}}</h2>
+            <p class="text-gray-600 mb-1">Categoría: {{this.category}}</p>
+            <p class="text-gray-800 font-bold mb-2">$ {{this.price}}</p>
+            <p class="text-sm text-gray-500">Stock: {{this.stock}}</p>
+          </div>
+          <button class="mt-4 bg-blue-600 text-white py-2 px-4 rounded-xl hover:bg-blue-700">
+            Agregar al carrito
+          </button>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Paginación -->
+    <div class="mt-8 flex justify-center items-center gap-4">
+      {{#if hasPrevPage}}
+        <a href="{{prevLink}}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">&laquo; Anterior</a>
+      {{/if}}
+
+      <span class="font-semibold">Página {{page}}</span>
+
+      {{#if hasNextPage}}
+        <a href="{{nextLink}}" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Siguiente &raquo;</a>
+      {{/if}}
+    </div>
+  </div>
+
+</body>
+</html>
+
+

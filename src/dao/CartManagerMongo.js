@@ -2,29 +2,36 @@ import CartModel from "../models/cart.model.js";
 
 export default class CartManagerMongo {
   constructor() {
+    this.cartModel = CartModel; // 💥 ESTA LÍNEA FALTABA
   }
 
   async deleteProductFromCart(cartId, productId) {
-    const cart = await CartModel.findById(cartId);
+    const cart = await this.cartModel.findById(cartId);
     if (!cart) throw new Error("Carrito no encontrado");
 
+    const cleanProductId = productId.trim();
+    const initialLength = cart.products.length;
+
     cart.products = cart.products.filter(
-      (p) => p.product.toString() !== productId
+      (p) => p.product.toString() !== cleanProductId
     );
+
+    if (cart.products.length === initialLength)
+      throw new Error("Producto no encontrado en el carrito");
 
     return await cart.save();
   }
 
   async updateCart(cartId, newProducts) {
-    const cart = await CartModel.findById(cartId);
+    const cart = await this.cartModel.findById(cartId);
     if (!cart) throw new Error("Carrito no encontrado");
 
-    cart.products = newProducts; 
+    cart.products = newProducts;
     return await cart.save();
   }
 
   async updateProductQuantity(cartId, productId, quantity) {
-    const cart = await CartModel.findById(cartId);
+    const cart = await this.cartModel.findById(cartId);
     if (!cart) throw new Error("Carrito no encontrado");
 
     const productInCart = cart.products.find(
@@ -38,21 +45,27 @@ export default class CartManagerMongo {
 
     throw new Error("Producto no encontrado en el carrito");
   }
-  
-  // CART METHODS
+
+  //CART METHODS
+  async getAllCarts() {
+    return await this.cartModel.find({});
+  }
+
   async createCart() {
-    return await CartModel.create({ products: [] });
+    return await this.cartModel.create({ products: [] });
   }
 
   async getCartById(cartId) {
-    return await CartModel.findById(cartId).populate('products.product');
+    return await this.cartModel.findById(cartId).populate("products.product");
   }
 
   async addProductToCart(cartId, productId) {
-    const cart = await CartModel.findById(cartId);
+    const cart = await this.cartModel.findById(cartId);
     if (!cart) return null;
 
-    const existingProduct = cart.products.find(p => p.product.toString() === productId);
+    const existingProduct = cart.products.find(
+      (p) => p.product.toString() === productId
+    );
 
     if (existingProduct) {
       existingProduct.quantity += 1;
@@ -62,5 +75,13 @@ export default class CartManagerMongo {
 
     await cart.save();
     return cart;
+  }
+
+  async clearCart(cartId) {
+    const cart = await this.cartModel.findById(cartId);
+    if (!cart) throw new Error("Carrito no encontrado");
+
+    cart.products = [];
+    return await cart.save();
   }
 }

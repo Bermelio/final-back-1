@@ -1,0 +1,219 @@
+
+[
+  {
+    "title": "Auriculares inalámbricos JS1",
+    "description": "Auriculares Bluetooth con cancelación de ruido",
+    "price": 29999,
+    "stock": 25,
+    "category": "Audio",
+    "status": "true"
+  },
+  {
+    "title": "Teclado mecánico RGB",
+    "description": "Teclado retroiluminado con switches rojos",
+    "price": 18999,
+    "stock": 15,
+    "category": "Periféricos",
+    "status": "true"
+  },
+  {
+    "title": "Mouse gamer 7200 DPI",
+    "description": "Mouse ergonómico con luces RGB",
+    "price": 9999,
+    "stock": 40,
+    "category": "Periféricos",
+    "status": "true"
+  },
+  {
+    "title": "Monitor 24 pulgadas Full HD",
+    "description": "Pantalla IPS con entrada HDMI y VGA",
+    "price": 64999,
+    "stock": 10,
+    "category": "Monitores",
+    "status": "true"
+  },
+  {
+    "title": "Notebook Ryzen 5 16GB RAM",
+    "description": "Laptop con SSD de 512GB y pantalla de 15.6''",
+    "price": 349999,
+    "stock": 7,
+    "category": "Computadoras",
+    "status": "true"
+  },
+  {
+    "title": "Silla gamer ergonómica",
+    "description": "Silla con respaldo reclinable y apoyabrazos 4D",
+    "price": 119999,
+    "stock": 5,
+    "category": "Muebles",
+    "status": "true"
+  },
+  {
+    "title": "Gabinete ATX con vidrio templado",
+    "description": "Gabinete con soporte para refrigeración líquida",
+    "price": 54999,
+    "stock": 12,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Fuente 650W 80+ Bronze",
+    "description": "Fuente de alimentación certificada para PC",
+    "price": 39999,
+    "stock": 18,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Placa de video RTX 4060",
+    "description": "8GB GDDR6 - Compatible con ray tracing",
+    "price": 479999,
+    "stock": 4,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Procesador Intel i5 12400F",
+    "description": "6 núcleos, 12 hilos, ideal para gaming",
+    "price": 189999,
+    "stock": 6,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Disco SSD 1TB NVMe",
+    "description": "Velocidad de lectura 3500 MB/s",
+    "price": 94999,
+    "stock": 20,
+    "category": "Almacenamiento",
+    "status": "true"
+  },
+  {
+    "title": "Disco rígido 2TB 7200 RPM",
+    "description": "Ideal para backup de datos",
+    "price": 62999,
+    "stock": 14,
+    "category": "Almacenamiento",
+    "status": "true"
+  },
+  {
+    "title": "Memoria RAM 16GB DDR4 3200MHz",
+    "description": "Compatible con la mayoría de motherboards",
+    "price": 39999,
+    "stock": 22,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Webcam HD 1080p",
+    "description": "Ideal para videollamadas y streaming",
+    "price": 14999,
+    "stock": 30,
+    "category": "Periféricos",
+    "status": "true"
+  },
+  {
+    "title": "Microfono USB condensador",
+    "description": "Micrófono profesional con brazo articulado",
+    "price": 22999,
+    "stock": 8,
+    "category": "Audio",
+    "status": "true"
+  },
+  {
+    "title": "Tablet Android 10'' 64GB",
+    "description": "Pantalla IPS, batería de larga duración",
+    "price": 119999,
+    "stock": 9,
+    "category": "Móviles",
+    "status": "true"
+  },
+  {
+    "title": "Soporte monitor doble brazo",
+    "description": "Para pantallas de hasta 32 pulgadas",
+    "price": 29999,
+    "stock": 10,
+    "category": "Accesorios",
+    "status": "true"
+  },
+  {
+    "title": "Repetidor WiFi 5GHz",
+    "description": "Mejora la señal en ambientes grandes",
+    "price": 18999,
+    "stock": 16,
+    "category": "Redes",
+    "status": "true"
+  },
+  {
+    "title": "Router doble banda AX",
+    "description": "WiFi 6 con gran cobertura",
+    "price": 45999,
+    "stock": 13,
+    "category": "Redes",
+    "status": "true"
+  },
+  {
+    "title": "Cooler CPU con RGB",
+    "description": "Disipador con ventilador silencioso",
+    "price": 22999,
+    "stock": 11,
+    "category": "Componentes",
+    "status": "true"
+  },
+  {
+    "title": "Smartwatch resistente al agua",
+    "description": "Notificaciones, pasos, ritmo cardíaco",
+    "price": 34999,
+    "stock": 17,
+    "category": "Wearables",
+    "status": "true"
+  },
+  {
+    "title": "Cable HDMI 4K 2 metros",
+    "description": "Soporta 60Hz y ARC",
+    "price": 4999,
+    "stock": 50,
+    "category": "Cables",
+    "status": "true"
+  },
+  {
+    "title": "Cargador USB-C rápido 30W",
+    "description": "Ideal para celulares y tablets",
+    "price": 7999,
+    "stock": 35,
+    "category": "Accesorios",
+    "status": "true"
+  },
+  {
+    "title": "Lámpara LED con base RGB",
+    "description": "Decorativa para escritorio gamer",
+    "price": 9999,
+    "stock": 12,
+    "category": "Iluminación",
+    "status": "true"
+  },
+  {
+    "title": "Batería externa 10000mAh",
+    "description": "Cargá tu celular varias veces",
+    "price": 13999,
+    "stock": 24,
+    "category": "Accesorios",
+    "status": "true"
+  },
+  {
+    "title": "Soporte celular para auto",
+    "description": "Con imán y giro 360°",
+    "price": 4999,
+    "stock": 28,
+    "category": "Accesorios",
+    "status": "true"
+  },
+  {
+    "title": "Kit limpieza PC profesional",
+    "description": "Incluye brochas, paños y aire comprimido",
+    "price": 5999,
+    "stock": 19,
+    "category": "Limpieza",
+    "status": "true"
+  }
+]

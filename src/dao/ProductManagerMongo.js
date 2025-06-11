@@ -1,7 +1,7 @@
 import { ProductModel } from "../models/product.model.js";
 
 class ProductManagerMongo {
-  async getProductsPaginated({ limit = 10, page = 1, sort, query }) {
+  async getProductsPaginated({ limit = 9, page = 1, sort, query }) {
     const filter = {};
 
     if (query) {
@@ -30,10 +30,10 @@ class ProductManagerMongo {
       hasPrevPage: result.hasPrevPage,
       hasNextPage: result.hasNextPage,
       prevLink: result.hasPrevPage
-        ? `/api/products?limit=${limit}&page=${result.prevPage}`
+        ? `/products?limit=${limit}&page=${result.prevPage}`
         : null,
       nextLink: result.hasNextPage
-        ? `/api/products?limit=${limit}&page=${result.nextPage}`
+        ? `/products?limit=${limit}&page=${result.nextPage}`
         : null,
     };
   }
