@@ -10,15 +10,33 @@
 
   <div class="container mx-auto px-4 py-8">
 
-    <h1 class="text-3xl font-bold mb-6 text-center">Productos</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center"><a href="/products">Productos</a></h1>
 
-    <div class="flex justify-end mb-2">
+    <div class="flex justify-end mb-4 gap-4">
+      <a
+        class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden"
+        href="/products?sort=asc" 
+      >
+      <span class="absolute inset-x-0 top-0 h-[2px] bg-indigo-600 transition-all group-hover:h-full"></span>
+      <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white"> Precio ↓</span>
+      </a>
+
+      <a
+        class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden"
+        href="/products?sort=desc"
+      >
+      <span class="absolute inset-x-0 top-0 h-[2px] bg-indigo-600 transition-all group-hover:h-full"></span>
+      <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">Precio ↑</span>
+      </a>
+
+
       <a class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden" href="/carts">
         <span class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full"></span>
         <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
           🛒 Ver carrito
         </span>
       </a>
+
     </div>
 
 
