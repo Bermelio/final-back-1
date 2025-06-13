@@ -18,6 +18,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+
 
 // Handlebars
 app.engine('handlebars', exphbs.engine({
@@ -42,7 +44,7 @@ mongoose
   .then(() => {
     console.log('✅ Conectado a MongoDB');
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+      console.log(`🚀 Servidor corriendo en http://localhost:${PORT}/products`);
     });
   })
   .catch((err) => {

@@ -20,23 +20,34 @@
       </a>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {{#each carts}}
+      <div class="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 mt-4 mb-4">
+        <h2 class="text-xl font-semibold mb-2">🧺 Carrito ID:</h2>
+        <p class="text-sm text-gray-500 mb-4">{{this._id}}</p>
+      </div>
         <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
           <div>
-            <h2 class="text-xl font-semibold mb-2">🧺 Carrito ID:</h2>
-            <p class="text-sm text-gray-500 mb-4">{{this._id}}</p>
 
             {{#if this.products.length}}
               <ul class="space-y-2">
                 {{#each this.products}}
                   <li class="text-gray-700">
                     <span class="font-medium">{{this.product.title}}</span> — Cantidad: {{this.quantity}}
+                    <span class="text-gray-500">(${{this.product.price}} c/u)</span>
+
+                    <button 
+                      class="delete-product text-blue-600 hover:underline ml-2"
+                      data-cart="{{../this._id}}" 
+                      data-product="{{this.product._id}}"
+                    >
+                      X Eliminar
+                    </button>
+
                   </li>
                 {{/each}}
               </ul>
             {{else}}
-              <p class="text-gray-500 italic">Este carrito está vacío.</p>
+              <p class="text-gray-500 italic">Este carrito está vacío...</p>
             {{/if}}
           </div>
         </div>
@@ -44,6 +55,11 @@
     </div>
 
   </div>
+  <script src="/js/deleteFromCart.js"></script>
+
+<script>
+  
+</script>
 
 </body>
 </html>

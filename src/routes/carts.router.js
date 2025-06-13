@@ -46,6 +46,24 @@ router.delete('/:cid/products/:pid', async (req, res) => {
   }
 });
 
+// POST carrito y producto (con session)
+router.post('/session/product/:pid', async (req, res) => {
+  try {
+    const cartId = req.session.cartId;
+    const { pid } = req.params;
+
+    if (!cartId) return res.status(400).json({ error: 'Carrito no inicializado' });
+
+    const result = await cartManager.addProductToCart(cartId, pid);
+    res.json({ status: 'success', cart: result });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
 // POST carrito y producto
 router.post('/:cid/product/:pid', async (req, res) => {
   try {
