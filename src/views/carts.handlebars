@@ -34,12 +34,20 @@
                   <li class="text-gray-700">
                     <span class="font-medium">{{this.product.title}}</span> — Cantidad: {{this.quantity}}
                     <span class="text-gray-500">(${{this.product.price}} c/u)</span>
-                    <a href="/carts/{{../this._id}}/products/{{this.product._id}}" class="text-blue-600 hover:underline ml-2">X</a>
+
+                    <button 
+                      class="delete-product text-blue-600 hover:underline ml-2"
+                      data-cart="{{../this._id}}" 
+                      data-product="{{this.product._id}}"
+                    >
+                      X Eliminar
+                    </button>
+
                   </li>
                 {{/each}}
               </ul>
             {{else}}
-              <p class="text-gray-500 italic">Este carrito está vacío.</p>
+              <p class="text-gray-500 italic">Este carrito está vacío...</p>
             {{/if}}
           </div>
         </div>
@@ -47,6 +55,11 @@
     </div>
 
   </div>
+  <script src="/js/deleteFromCart.js"></script>
+
+<script>
+  
+</script>
 
 </body>
 </html>

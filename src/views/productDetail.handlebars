@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{product.title}}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <div class="container mx-auto px-20 py-4">
+        <div class="container mx-auto pl-4 pt-8 max-w-10xl">
+            <h1 class="text-4xl font-bold mb-4 text-indigo-600">{{product.title}}</h1>
+
+
+        <div class="flex justify-end mb-6 gap-4">
+            <a class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden" href="/carts">
+                <span class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full"></span>
+                <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">🛒 Ver carrito</span>
+                <span id="cart-count" class="ml-1 inline-block bg-indigo-600 text-white rounded-full px-2 text-xs">0</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center bg-white p-6 rounded-2xl shadow-md">
+
+        <div class="flex w-full h-full relative overflow-hidden mb-4">
+            <img src="{{product.thumbnail}}" alt="{{product.title}}" class="w-full h-48 object-scale-down rounded-lg">
+        </div>
+        <div class="text-gray-700 pr-20">
+
+            <p class="text-lg text-gray-800 mb-2">💸 Precio: <span class="font-semibold">${{product.price}}</span></p>
+            <p class="text-gray-600 mb-2">📦 Stock: {{product.stock}}</p>
+            <p class="text-gray-600 mb-2">🏷️ Categoría: {{product.category}}</p>
+            <p class="text-gray-700 mb-4">{{product.description}}</p>
+
+        </div>
+
+        <button
+        class="bg-indigo-600 text-white py-2 px-4 rounded-xl hover:bg-blue-700 add-to-cart"
+        data-id="{{product._id}}"
+        >
+        Agregar al carrito
+        </button>
+    </div>
+
+    <div class="mt-6">
+        <a
+        class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-2 focus:ring-3 focus:outline-hidden"
+        href="/products"
+        >
+            <span class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full"></span>
+            <span class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
+            Volver a productos
+            </span>
+        </a>
+    </div>
+
+
+  </div>
+<script src="/js/addToCart.js"></script>
+</body>
+</html>

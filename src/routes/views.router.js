@@ -65,4 +65,24 @@ router.get('/carts', async (req, res) => {
   }
 });
 
+// Render individual product detail
+router.get('/products/:pid', async (req, res) => {
+  try {
+    const { pid } = req.params;
+    const product = await ProductModel.findById(pid).lean();
+
+    if (!product) {
+      return res.status(404).send('Producto no encontrado');
+    }
+
+    res.render('productDetail', {
+      product
+    });
+
+  } catch (error) {
+    console.error('Error al mostrar producto individual:', error.message);
+    res.status(500).send('Error al cargar producto por: ' + error.message);
+  }
+});
+
 export default router;

@@ -2,7 +2,7 @@ import CartModel from "../models/cart.model.js";
 
 export default class CartManagerMongo {
   constructor() {
-    this.cartModel = CartModel; // 💥 ESTA LÍNEA FALTABA
+    this.cartModel = CartModel;
   }
 
   async deleteProductFromCart(cartId, productId) {
