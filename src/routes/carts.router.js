@@ -46,30 +46,35 @@ router.delete('/:cid/products/:pid', async (req, res) => {
   }
 });
 
-// POST carrito y producto (con session)
-router.post('/session/product/:pid', async (req, res) => {
-  try {
-    const cartId = req.session.cartId;
-    const { pid } = req.params;
+// // POST carrito y producto (con session) ABANDONAMOS LA IDEA DE SESSION
+// router.post('/session/product/:pid', async (req, res) => {
+//   try {
+//     const cartId = req.session.cartId;
+//     const { pid } = req.params;
 
-    if (!cartId) return res.status(400).json({ error: 'Carrito no inicializado' });
+//     if (!cartId) return res.status(400).json({ error: 'Carrito no inicializado' });
 
-    const result = await cartManager.addProductToCart(cartId, pid);
-    res.json({ status: 'success', cart: result });
+//     const result = await cartManager.addProductToCart(cartId, pid);
+//     res.json({ status: 'success', cart: result });
 
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 
 
 // POST carrito y producto
 router.post('/:cid/product/:pid', async (req, res) => {
   try {
-    const result = await cartManager.addProductToCart(req.params.cid, req.params.pid);
+    const result = await cartManager.addProductToCart(
+      req.params.cid,
+      req.params.pid,
+      req.body.quantity
+    );
     res.json({ status: 'success', cart: result });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });

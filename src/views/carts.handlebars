@@ -20,46 +20,60 @@
       </a>
     </div>
 
-      {{#each carts}}
-      <div class="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 mt-4 mb-4">
-        <h2 class="text-xl font-semibold mb-2">🧺 Carrito ID:</h2>
-        <p class="text-sm text-gray-500 mb-4">{{this._id}}</p>
-      </div>
+    {{#each carts}}
+    <div class="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 mt-4 mb-4">
+      <h2 class="text-xl font-semibold mb-2">🧺 Carrito ID:</h2>
+      <p class="text-sm text-gray-500 mb-4">{{this._id}}</p>
+    </div>
         <div class="bg-white rounded-2xl shadow-md p-4 flex flex-col justify-between">
-          <div>
-
             {{#if this.products.length}}
               <ul class="space-y-2">
                 {{#each this.products}}
-                  <li class="text-gray-700">
-                    <span class="font-medium">{{this.product.title}}</span> — Cantidad: {{this.quantity}}
-                    <span class="text-gray-500">(${{this.product.price}} c/u)</span>
-
+                  <li class="flex justify-between items-center p-2 border-b border-gray-200">
+                    <div class="flex items-center gap-5">
+                      <img src="{{this.product.thumbnail}}" alt="{{this.product.title}}" class="w-16 h-16 object-cover rounded-lg mr-4">
+                      <h3 class="text-lg font-semibold">{{this.product.title}}</h3>
+                      <p class="text-sm text-gray-500">Cantidad: {{this.quantity}}</p>
+                      <p class="text-sm text-gray-500">Precio: ${{this.product.price}}</p>
+                    </div>
                     <button 
-                      class="delete-product text-blue-600 hover:underline ml-2"
+                      class="delete-product text-red-600 hover:text-red-800 delete-from-cart" 
                       data-cart="{{../this._id}}" 
-                      data-product="{{this.product._id}}"
-                    >
-                      X Eliminar
+                      data-product="{{this.product._id}}">
+                      ❌ Eliminar
                     </button>
-
                   </li>
                 {{/each}}
               </ul>
             {{else}}
-              <p class="text-gray-500 italic">Este carrito está vacío...</p>
+            <p class="text-gray-500 italic">Este carrito está vacío...</p>
             {{/if}}
-          </div>
         </div>
+      <div class="flex justify-between items-center mt-4">
+        <div class="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 mt-4 mb-4">
+          <h2 class="text-xl font-semibold mb-2">SubTotal</h2>
+          <p class="text-lg font-bold text-indigo-600">${{subtotal}}</p>
+          <a
+          id="buy-button"
+          class="inline-block rounded-sm bg-indigo-600 px-8 py-3 text-sm font-medium text-white transition hover:scale-110 hover:shadow-xl focus:ring-3 focus:outline-hidden"
+          {{!-- href="#" --}}
+          >
+          Comprar~!
+          </a>
+        </div>
+      </div>
       {{/each}}
     </div>
-
   </div>
   <script src="/js/deleteFromCart.js"></script>
 
 <script>
-  
+  document.getElementById('buy-button').addEventListener('click', function (event) {
+    event.preventDefault();
+    alert('Gracias por tu compra! \n Aca tercerisariamo y descontariamos el stock etc... \n Pero por ahora solo es una demo');
+  });
 </script>
+
 
 </body>
 </html>

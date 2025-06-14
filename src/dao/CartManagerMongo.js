@@ -59,22 +59,22 @@ export default class CartManagerMongo {
     return await this.cartModel.findById(cartId).populate("products.product");
   }
 
-  async addProductToCart(cartId, productId) {
-    const cart = await this.cartModel.findById(cartId);
-    if (!cart) return null;
+  async addProductToCart(cartId, productId, quantity = 1) {
+  const cart = await this.cartModel.findById(cartId);
+  if (!cart) return null;
 
-    const existingProduct = cart.products.find(
-      (p) => p.product.toString() === productId
-    );
+  const existingProduct = cart.products.find(
+    (p) => p.product.toString() === productId
+  );
 
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.products.push({ product: productId, quantity: 1 });
-    }
+  if (existingProduct) {
+    existingProduct.quantity += quantity;
+  } else {
+    cart.products.push({ product: productId, quantity });
+  }
 
-    await cart.save();
-    return cart;
+  await cart.save();
+  return cart;
   }
 
   async clearCart(cartId) {
