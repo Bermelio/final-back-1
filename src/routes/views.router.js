@@ -51,8 +51,17 @@ router.get('/carts', async (req, res) => {
       lean: true
     });
 
+    // Calcular subtotal para cada carrito
+    const carts = result.docs.map(cart => {
+      let subtotal = 0;
+      cart.products.forEach(item => {
+        subtotal += item.product.price * item.quantity;
+      });
+      return { ...cart, subtotal };
+    });
+
     res.render('carts', {
-      carts: result.docs,
+      carts,
       page: result.page,
       hasPrevPage: result.hasPrevPage,
       hasNextPage: result.hasNextPage,
@@ -64,6 +73,7 @@ router.get('/carts', async (req, res) => {
     res.status(500).send('Error al cargar el carrito por: ' + error.message);
   }
 });
+
 
 // Render individual product detail
 router.get('/products/:pid', async (req, res) => {

@@ -20,11 +20,12 @@
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
     "mongoose": "^8.15.1",
-    "mongoose-paginate-v2": "^1.9.1",
-    "postcss": "^8.5.4",
-    "tailwindcss": "^4.1.8"
+    "mongoose-paginate-v2": "^1.9.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "autoprefixer": "^10.4.21",
+    "nodemon": "^3.1.10",
+    "postcss": "^8.5.5",
+    "tailwindcss": "^4.1.10"
   }
 }

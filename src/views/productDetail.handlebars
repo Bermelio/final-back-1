@@ -35,12 +35,23 @@
 
         </div>
 
-        <button
-        class="bg-indigo-600 text-white py-2 px-4 rounded-xl hover:bg-blue-700 add-to-cart"
-        data-id="{{product._id}}"
-        >
-        Agregar al carrito
-        </button>
+        <div class="flex items-center gap-4 mt-4">
+            <input 
+            id="quantity" 
+            type="number" 
+            value="1" 
+            min="1" 
+            max="{{product.stock}}" 
+            class="w-20 border border-gray-300 rounded px-2 py-1"
+            >
+
+            <button
+            class="bg-indigo-600 text-white py-2 px-4 rounded-xl hover:bg-blue-700 add-to-cart"
+            data-id="{{product._id}}"
+            >
+            Agregar al carrito
+            </button>
+        </div>
     </div>
 
     <div class="mt-6">
