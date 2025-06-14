@@ -37,7 +37,7 @@ Está diseñado para practicar conceptos como:
 
 ---
 
-##🚀 Tecnologías Utilizadas
+## 🚀 Tecnologías Utilizadas
 Node.js (v18+)
 
 Express - Framework web
